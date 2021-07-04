@@ -1,0 +1,32 @@
+---
+
+galaxy_info:
+  role_name: meshchat
+  namespace: deekayen
+  author: David Norman
+  description: Install Trevor Paskett's mesh chat for AREDN.
+
+  github_branch: main
+  issue_tracker_url: https://github.com/deekayen/ansible-role-meshchat/issues
+  license: BSD-3-Clause
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+    - name: Debian
+      versions:
+        - buster
+
+  galaxy_tags:
+    - aredn
+    - meshchat
+    - raspberrypi
+
+collections:
+  - name: ansible.builtin
+    version: '>=1.5'
+
+dependencies: []

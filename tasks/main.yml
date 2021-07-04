@@ -1,0 +1,33 @@
+---
+
+- name: Check for Debian.
+  ansible.builtin.assert:
+    that:
+      - ansible_os_family == 'Debian'
+    fail_msg: "Try again on a Debian-based distro."
+    success_msg: "Debian-based distro found, continuing..."
+
+- name: Install dependencies.
+  ansible.builtin.apt:
+    name:
+      - apache2
+      - curl
+    state: present
+  notify:
+    - enable apache2
+
+- name: Install mesh chat.
+  ansible.builtin.apt:
+    deb: "{{ meshchat_deb }}"
+
+- name: Set pi_zone configuration.
+  ansible.builtin.lineinfile:
+    path: /usr/lib/cgi-bin/meshchatconfig.pm
+    regexp: '^our \$pi_zone'
+    line: "our $pi_zone = '{{ pi_zone }}';"
+
+- name: Set local_meshchat_node configuration.
+  ansible.builtin.lineinfile:
+    path: /usr/lib/cgi-bin/meshchatconfig.pm
+    regexp: '^our \$local_meshchat_node'
+    line: "our $local_meshchat_node = '{{ local_meshchat_node }}';"
