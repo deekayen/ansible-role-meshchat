@@ -1,5 +1,7 @@
 # mesh chat
 
+[![CI](https://github.com/deekayen/ansible-role-meshchat/actions/workflows/ci.yml/badge.svg)](https://github.com/deekayen/ansible-role-meshchat/actions/workflows/ci.yml) [![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
+
 Install [Trevor Paskett](http://www.trevorsbench.com/meshchat-messaging-for-mesh-networks/)'s mesh chat for [AREDN](https://www.arednmesh.org/).
 
 Requirements
