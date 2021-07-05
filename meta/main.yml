@@ -26,7 +26,6 @@ galaxy_info:
     - raspberrypi
 
 collections:
-  - name: ansible.builtin
-    version: '>=1.5'
+  - ansible.builtin
 
 dependencies: []
