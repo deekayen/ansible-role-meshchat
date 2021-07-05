@@ -11,7 +11,7 @@ def test_dependencies_installed(host):
 
 
 def test_dependencies_service(host):
-    assert host.package("apache2").is_enabled
+    assert host.service("apache2").is_enabled
 
 
 def test_meshchat_files(host):
