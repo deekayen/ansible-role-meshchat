@@ -31,3 +31,9 @@
     path: /usr/lib/cgi-bin/meshchatconfig.pm
     regexp: '^our \$local_meshchat_node'
     line: "our $local_meshchat_node = '{{ local_meshchat_node }}';"
+
+- name: Set local_meshchat_node configuration.
+  ansible.builtin.lineinfile:
+    path: /usr/lib/cgi-bin/meshchatconfig.pm
+    regexp: '^our \$meshchat_path'
+    line: "our $meshchat_path = '/var/www/meshchat';"
