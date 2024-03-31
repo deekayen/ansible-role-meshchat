@@ -1,3 +1,3 @@
 ---
 
-meshchat_deb: https://s3.amazonaws.com/aredn/meshchat_1.02_all.deb
+meshchat_deb: https://github.com/deekayen/ansible-role-meshchat/raw/main/files/meshchat_1.02_all.deb
