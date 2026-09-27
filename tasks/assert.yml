@@ -2,7 +2,7 @@
 - name: Check for Debian.
   ansible.builtin.assert:
     that:
-      - ansible_os_family == 'Debian'
+      - ansible_facts.os_family == 'Debian'
     fail_msg: "Try again on a Debian-based distro."
     quiet: true
 
