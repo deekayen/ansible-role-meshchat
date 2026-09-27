@@ -1,18 +1,26 @@
-import os
-import testinfra.utils.ansible_runner
+"""Testinfra checks for the mesh chat role."""
 
-testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
-    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+import pytest
 
-
-def test_dependencies_installed(host):
-    assert host.package("apache2").is_installed
-    assert host.package("curl").is_installed
+CONFIG = "/usr/lib/cgi-bin/meshchatconfig.pm"
 
 
-def test_dependencies_service(host):
+@pytest.mark.parametrize("name", ["apache2", "curl", "meshchat"])
+def test_packages_installed(host, name):
+    assert host.package(name).is_installed
+
+
+def test_apache_enabled(host):
     assert host.service("apache2").is_enabled
 
 
-def test_meshchat_files(host):
-    assert host.file("/usr/lib/cgi-bin/meshchatconfig.pm").exists
+@pytest.mark.parametrize(
+    "line",
+    [
+        "our $pi_zone = 'MeshChat';",
+        "our $local_meshchat_node = 'N0CALL-TEST';",
+        "our $meshchat_path = '/var/www/meshchat';",
+    ],
+)
+def test_config_lines(host, line):
+    assert line in host.file(CONFIG).content_string.splitlines()

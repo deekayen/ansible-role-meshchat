@@ -1,0 +1,24 @@
+---
+- name: Check for Debian.
+  ansible.builtin.assert:
+    that:
+      - ansible_os_family == 'Debian'
+    fail_msg: "Try again on a Debian-based distro."
+    quiet: true
+
+# Both values land inside single-quoted Perl strings in meshchatconfig.pm.
+- name: Assert the mesh chat settings are non-empty and quote-free.
+  ansible.builtin.assert:
+    that:
+      - item.value | length > 0
+      - "\"'\" not in item.value"
+      - "'\\\\' not in item.value"
+    fail_msg: "{{ item.key }} must be non-empty and contain no quote or backslash, got: {{ item.value }}"
+    quiet: true
+  loop:
+    - key: pi_zone
+      value: "{{ pi_zone }}"
+    - key: local_meshchat_node
+      value: "{{ local_meshchat_node }}"
+  loop_control:
+    label: "{{ item.key }}"

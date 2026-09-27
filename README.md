@@ -7,7 +7,10 @@ Install [Trevor Paskett](http://www.trevorsbench.com/meshchat-messaging-for-mesh
 Requirements
 ------------
 
-Outbound Internet to download the installer from AWS S3.
+A Debian-family host (Debian, Ubuntu, Raspberry Pi OS) with outbound Internet
+access to download the mesh chat package from GitHub.
+
+Tested with Molecule on Ubuntu 22.04/24.04/26.04 and Debian 12/13.
 
 Role Variables
 --------------
@@ -22,7 +25,7 @@ local_meshchat_node: localnode
 Dependencies
 ------------
 
-ansible.builtin:>=1.5
+None.
 
 Example Playbook
 ----------------
@@ -31,7 +34,7 @@ Example Playbook
 ---
 - name: Install mesh chat.
   hosts: all
-  become: yes
+  become: true
 
   roles:
     - role: deekayen.meshchat

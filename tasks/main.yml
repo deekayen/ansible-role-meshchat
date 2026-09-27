@@ -1,11 +1,8 @@
 ---
-
-- name: Check for Debian.
-  ansible.builtin.assert:
-    that:
-      - ansible_os_family == 'Debian'
-    fail_msg: "Try again on a Debian-based distro."
-    success_msg: "Debian-based distro found, continuing..."
+- name: Validate role variables.
+  ansible.builtin.import_tasks: assert.yml
+  tags:
+    - always
 
 - name: Install dependencies.
   ansible.builtin.apt:
@@ -14,7 +11,7 @@
       - curl
     state: present
   notify:
-    - enable apache2
+    - Enable apache2.
 
 - name: Install mesh chat.
   ansible.builtin.apt:
@@ -32,7 +29,7 @@
     regexp: '^our \$local_meshchat_node'
     line: "our $local_meshchat_node = '{{ local_meshchat_node }}';"
 
-- name: Set local_meshchat_node configuration.
+- name: Set meshchat_path configuration.
   ansible.builtin.lineinfile:
     path: /usr/lib/cgi-bin/meshchatconfig.pm
     regexp: '^our \$meshchat_path'

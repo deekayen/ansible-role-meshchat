@@ -1,6 +1,5 @@
 ---
-
-- name: enable apache2
-  service:
+- name: Enable apache2.
+  ansible.builtin.service:
     name: apache2
     enabled: true

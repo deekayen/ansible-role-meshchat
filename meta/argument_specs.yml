@@ -1,0 +1,18 @@
+---
+argument_specs:
+  main:
+    short_description: Install Trevor Paskett's mesh chat for AREDN.
+    description:
+      - Installs Apache and the mesh chat package, then sets the mesh chat
+        zone, node, and path in meshchatconfig.pm.
+    author:
+      - David Norman
+    options:
+      pi_zone:
+        type: str
+        default: MeshChat
+        description: Mesh chat zone name the node joins.
+      local_meshchat_node:
+        type: str
+        default: localnode
+        description: AREDN node name that hosts the mesh chat service.
